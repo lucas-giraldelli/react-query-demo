@@ -6,7 +6,7 @@ export const useSuperHeroesData = (
     onSuccess?: (data: Array<SuperHeroDTO>) => void | undefined,
     onError?: (error: Error) => void | undefined,
     pooling: boolean = false,
-    fetchOnMount: boolean = false
+    fetchOnMount: boolean = true
 ) => {
 
     const fetchSuperHeroes = () => {
@@ -27,7 +27,7 @@ export const useSuperHeroesData = (
         onError, // <-- tries 4x before throwing error
         select: (data) => {
             console.log({data});
-            const superHeroesName: Array<SuperHeroDTO> = data.data.map((hero: SuperHeroDTO) => hero.name);
+            const superHeroesName: Array<SuperHeroDTO> = data.data.map((hero: SuperHeroDTO) => hero);
             return superHeroesName
         } // <-- this is for data trasformation
     });

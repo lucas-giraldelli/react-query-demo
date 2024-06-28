@@ -16,9 +16,35 @@
       "alterEgo": "Princess Diana"
     },
     {
-      "id": 3,
-      "name": "The flash",
+      "id": 4,
+      "name": "Flash",
       "alterEgo": "Barry Allen"
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "name": "Joe"
+    },
+    {
+      "id": 2,
+      "name": "Rachel"
+    },
+    {
+      "id": 3,
+      "name": "Chandler"
+    }
+  ],
+  "users": [
+    {
+      "id": "lucas@example.com",
+      "channelId": "lucasdev"
+    }
+  ],
+  "channels": [
+    {
+      "id": "lucasdev",
+      "courses": ["react", "node", "mysql"]
     }
   ]
 }
