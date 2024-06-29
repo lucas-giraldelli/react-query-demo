@@ -1,19 +1,28 @@
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient, UseQueryResult } from "react-query";
 import { SuperHeroDTO } from "../components/SuperHeroes";
 
-export const fetchSuperHeroes = (heroId?: string) => {
-  if (!heroId) return;
-  return axios.get(`http://localhost:4000/superheroes/${heroId}`)
-}
+export const fetchSuperHeroes = async (heroId?: string): Promise<SuperHeroDTO | null> => {
+  if (!heroId) return null;
+  const response = await axios.get<SuperHeroDTO>(`http://localhost:4000/superheroes/${heroId}`);
+  return response.data;
+};
 
 export const useSuperHeroData = (heroId: string | undefined) => {
 
-    return useQuery({
-        queryKey: ['super-heroes', heroId],
+  const queryClient = useQueryClient();
+
+  return useQuery<SuperHeroDTO | null, Error>({
+        queryKey: ['super-hero', heroId],
         queryFn: () => fetchSuperHeroes(heroId),
-        select: (data) => {
-          return data?.data as SuperHeroDTO;
+        initialData: () => {
+          const cachedHeroesResult = queryClient.getQueryData<UseQueryResult<SuperHeroDTO[]>>('super-heroes');
+
+          if (cachedHeroesResult?.data) {
+              const hero = cachedHeroesResult.
+              data.find(hero => hero.id === heroId);
+              return hero ? hero : null;
+          }
         }
-    });
+  });
 }

@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 
-export function RootLayout() {
+export default function RootLayout() {
   return (
     <main>
       <nav>

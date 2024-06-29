@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useSuperHeroData } from "../hooks/useSuperHeroData";
 
-export function RQSuperHero() {
+export default function RQSuperHero() {
   const { heroId } = useParams();
 
   const { data: hero, isLoading } = useSuperHeroData(heroId || "");

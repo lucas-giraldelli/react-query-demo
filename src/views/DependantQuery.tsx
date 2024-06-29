@@ -19,7 +19,7 @@ type Channel = {
   courses: string[];
 };
 
-export function DependantQuery({ email }: DependantQueryProps) {
+export default function DependantQuery({ email }: DependantQueryProps) {
   const baseURL = "http://localhost:4000";
 
   const { data: user } = useQuery({

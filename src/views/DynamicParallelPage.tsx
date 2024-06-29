@@ -6,7 +6,9 @@ type DynamicParallelPageProps = {
   heroIds: Array<number>;
 };
 
-export function DynamicParallelPage({ heroIds }: DynamicParallelPageProps) {
+export default function DynamicParallelPage({
+  heroIds,
+}: DynamicParallelPageProps) {
   const heroes = useQueries(
     heroIds.map((id) => {
       return {
